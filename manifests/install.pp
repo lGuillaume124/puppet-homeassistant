@@ -3,6 +3,7 @@ class homeassistant::install {
 
   $confdir = $::homeassistant::confdir
   $home = $::homeassistant::home
+  $manage_python = $::homeassistant::manage_python
 
   group { 'homeassistant':
     ensure => present,
@@ -30,12 +31,14 @@ class homeassistant::install {
     recurse => true,
   }
 
-  class { '::python':
-    ensure     => present,
-    version    => 'python3',
-    pip        => 'present',
-    virtualenv => 'present',
-    dev        => true,
+  if ($manage_python and !defined(Class['::python'])) {
+    class { '::python':
+      ensure     => present,
+      version    => 'python3',
+      pip        => 'present',
+      virtualenv => 'present',
+      dev        => true,
+    }
   }
 
   python::pyvenv { $home:

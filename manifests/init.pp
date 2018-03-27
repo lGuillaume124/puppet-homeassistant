@@ -13,6 +13,7 @@
 # @param home Installation directory.
 # @param confdir Configuration directory.
 # @param known_devices_replace Define if Puppet should let hass manage known_devices.yaml or not.
+# @param manage_python Define if the python Puppet class should be declared or not.
 #
 class homeassistant (
   String $location_name,
@@ -25,6 +26,7 @@ class homeassistant (
   Stdlib::Absolutepath $home   = '/srv/homeassistant',
   Stdlib::Absolutepath $confdir = '/etc/homeassistant',
   Boolean $known_devices_replace = false,
+  Boolean $manage_python = true,
 ) {
 
   class { '::homeassistant::install': }
