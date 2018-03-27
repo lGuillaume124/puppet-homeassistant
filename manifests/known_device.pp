@@ -15,7 +15,7 @@ define homeassistant::known_device(
   Optional[String] $gravatar = undef,
 ) {
 
-  concat::fragment{"${title}_knowndevice":
+  concat::fragment { "${title}_knowndevice":
     target  => 'known_devices.yaml',
     order   => '05',
     content => template('homeassistant/known_device.yaml.erb'),

@@ -4,24 +4,25 @@ class homeassistant::install {
   $confdir = $::homeassistant::confdir
   $home = $::homeassistant::home
 
-  group{'homeassistant':
+  group { 'homeassistant':
     ensure => present,
     system => true,
   }
 
-  user{'homeassistant':
+  user { 'homeassistant':
     ensure => present,
     home   => $home,
     system => true,
     gid    => 'homeassistant',
   }
 
-  file{$confdir:
+  file { $confdir:
     ensure => directory,
     owner  => 'homeassistant',
     group  => 'homeassistant',
   }
-  file{"${confdir}/components":
+
+  file { "${confdir}/components":
     ensure  => directory,
     owner   => 'homeassistant',
     group   => 'homeassistant',
@@ -29,8 +30,7 @@ class homeassistant::install {
     recurse => true,
   }
 
-
-  class{'::python':
+  class { '::python':
     ensure     => present,
     version    => 'python3',
     pip        => 'present',
@@ -38,18 +38,19 @@ class homeassistant::install {
     dev        => true,
   }
 
-  python::pyvenv{$home:
+  python::pyvenv { $home:
     ensure => present,
     owner  => 'homeassistant',
     group  => 'homeassistant',
   }
 
-  python::pip{'homeassistant':
+  python::pip { 'homeassistant':
     ensure     => present,
     virtualenv => $home,
     owner      => 'homeassistant',
     group      => 'homeassistant',
   }
+
   systemd::unit_file { 'homeassistant.service':
     content => template("${module_name}/homeassistant.service.erb"),
   }

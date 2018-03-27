@@ -17,7 +17,6 @@ define homeassistant::component (
     $_instance = "${component} ${name}"
   }
 
-
   # If there is a hash of connfiguration put it in it's own file
   # otherwise don't bother creating a file.
   if $config {
@@ -28,7 +27,8 @@ define homeassistant::component (
       group   => 'homeassistant',
       notify   => Service['homeassistant'],
     })
-    file{"${confdir}/components/${component}/${name}.yaml":
+
+    file { "${confdir}/components/${component}/${name}.yaml":
       ensure  => file,
       owner   => 'homeassistant',
       group   => 'homeassistant',
@@ -39,7 +39,7 @@ define homeassistant::component (
     $_content = "# Component ${_instance}\n${_instance}:\n\n"
   }
 
-  concat::fragment{$name:
+  concat::fragment { $name:
     target  => 'configuration.yaml',
     order   => '05',
     content => $_content,
