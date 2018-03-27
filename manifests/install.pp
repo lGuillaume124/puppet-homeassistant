@@ -1,8 +1,8 @@
 # @summary Install home-assistant.
-class homeassistant::install (
-  $home    = $homeassistant::home,
-  $confdir = $homeassistant::confdir,
-) inherits homeassistant {
+class homeassistant::install {
+
+  $confdir = $::homeassistant::confdir
+  $home = $::homeassistant::home
 
   group{'homeassistant':
     ensure => present,

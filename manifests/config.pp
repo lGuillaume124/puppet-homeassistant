@@ -1,14 +1,14 @@
 # @summary Configures home-assistant.
-class homeassistant::config (
-  $location_name = $homeassistant::location_name,
-  $latitute      = $homeassistant::latitude,
-  $longitude     = $homeassistant::longitude,
-  $unit_system   = $homeassistant::unit_system,
-  $time_zone     = $homeassistant::time_zone,
-  $confdir       = $homeassistant::confdir,
-  $known_devices = $homeassistant::known_devices,
-  $known_devices_replace = $homeassistant::known_devices_replace,
-) inherits homeassistant {
+class homeassistant::config {
+
+  $confdir = $::homeassistant::confdir
+  $known_devices = $::homeassistant::known_devices
+  $known_devices_replace = $::homeassistant::known_devices_replace
+  $latitude = $::homeassistant::latitude
+  $location_name = $::homeassistant::location_name
+  $longitude = $::homeassistant::longitude
+  $time_zone = $::homeassistant::time_zone
+  $unit_system = $::homeassistant::unit_system
 
   concat{'configuration.yaml':
     path   => "${confdir}/configuration.yaml",
