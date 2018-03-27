@@ -1,3 +1,4 @@
+# @summary Install home-assistant.
 class homeassistant::install (
   $home    = $homeassistant::home,
   $confdir = $homeassistant::confdir,

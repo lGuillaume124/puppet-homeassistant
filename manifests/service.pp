@@ -1,3 +1,4 @@
+# @summary Manages the home-assistant service.
 class homeassistant::service (
   $home         = $homeassistant::home,
 ) inherits homeassistant {

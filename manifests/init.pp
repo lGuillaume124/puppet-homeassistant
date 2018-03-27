@@ -1,3 +1,19 @@
+# @summary Puppet Module for Home Assistant - home automation platform.
+#
+# @example Declaring the class
+#   include ::homeassistant
+#
+# @param location_name Name of the location where Home Assistant is running.
+# @param latitude Latitude of your location required to calculate the time the sun rises and sets.
+# @param longitude Longitude of your location required to calculate the time the sun rises and sets.
+# @param elevation Altitude abose sea level in meters. Impacts weather/sunrise data.
+# @param unit_system metric for Metric, imperial for Imperial.
+# @param time_zone Your time zone.
+# @param known_devices A list of connected devices considered "in home".
+# @param home Installation directory.
+# @param confdir Configuration directory.
+# @param known_devices_replace Define if Puppet should let hass manage known_devices.yaml or not.
+#
 class homeassistant (
   String $location_name,
   Numeric $latitude,

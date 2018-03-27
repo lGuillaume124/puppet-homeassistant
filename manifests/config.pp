@@ -1,3 +1,4 @@
+# @summary Configures home-assistant.
 class homeassistant::config (
   $location_name = $homeassistant::location_name,
   $latitute      = $homeassistant::latitude,

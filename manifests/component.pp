@@ -1,3 +1,8 @@
+# @summary A Home-assistant component configuration.
+#
+# @param component The component's name.
+# @param config The component's configuration.
+# @param confdir The configuration directory of Home-assistant.
 define homeassistant::component (
   $component = $name,
   $config = undef,
