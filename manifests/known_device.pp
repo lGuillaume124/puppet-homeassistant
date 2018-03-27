@@ -6,6 +6,8 @@
 # @param track If true then the device will be tracked. Otherwise its location and state will not update.
 # @param picture A picture that you can use to easily identify the person or device.
 # @param gravatar An email address for the device’s owner. If provided, it will override picture.
+# @params icon An icon for this device (use as an alternative to picture).
+# @param consider_home Seconds to wait till marking someone as not home after not being seen.
 define homeassistant::known_device(
   String  $mac,
   Boolean $hide_if_away = true,
@@ -13,6 +15,8 @@ define homeassistant::known_device(
   Boolean $track = false,
   Optional[String] $picture = undef,
   Optional[String] $gravatar = undef,
+  Optional[String] $icon = undef,
+  Optional[Integer] $consider_home = undef,
 ) {
 
   concat::fragment { "${title}_knowndevice":
